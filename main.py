@@ -27,13 +27,10 @@ while is_game:
 
     if state == "Exit":
         is_game = False
-        missing_states = []
-        for state in state_list:
-            if state not in guess_states:
-                missing_states.append(state)
+        missing_states = [state for state in state_list if state not in guess_states]
         out_data = pandas.DataFrame(missing_states)
         out_data.to_csv("to_learn.csv")
-                
+
     if state in state_list and state not in guess_states:
         guess_states.append(state)
         data_aux = data[data["state"] == state]
